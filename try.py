@@ -1,9 +1,17 @@
 import pandas as pd 
 import numpy as np 
 import streamlit as st 
-import google.generativeai as genai 
+
 import sqlite3 
 import os
+
+
+try:
+    import google.generativeai as genai
+except ModuleNotFoundError:
+    import subprocess
+    subprocess.run(["pip", "install", "google-generativeai==0.8.5"])
+    import google.generativeai as genai
 
 # --- Configure Gemini ---
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
